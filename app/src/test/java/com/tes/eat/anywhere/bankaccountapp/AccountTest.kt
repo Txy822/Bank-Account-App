@@ -17,7 +17,7 @@ class AccountTest {
     fun `user deposited money to the account -success`(){
         var balance =account.balance
 
-        var balanceAfterDeposit =deposit(depositAmount)
+        var balanceAfterDeposit =account.deposit(depositAmount)
         assert(balanceAfterDeposit==balance+depositAmount)
     }
 
