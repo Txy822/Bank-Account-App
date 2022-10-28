@@ -3,6 +3,8 @@ package com.tes.eat.anywhere.bankaccountapp
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import java.text.DateFormat
+import java.util.*
 
 class AccountTest {
       lateinit var account:Account
@@ -16,11 +18,22 @@ class AccountTest {
     @Test
     fun `user deposited money to the account -success`(){
         var balance =account.balance
-
-        var balanceAfterDeposit =account.deposit(depositAmount)
-        assert(balanceAfterDeposit==balance+depositAmount)
+        account.deposit(depositAmount)
+        var newBalance =account.balance
+        assert(balance!=newBalance)
     }
 
+
+    @Test
+    fun `user withdraw money-success`(){
+        var withdrawAmount:Double= account.withdrawAmount
+       // var  date: android.text.format.DateFormat = android.text.format.DateFormat()
+        var  date:String = account.date
+        var balance=account.balance
+       account.withdraw(withdrawAmount,date)
+        var newBalance=account.balance
+        assert(newBalance==balance-withdrawAmount)
+    }
 
     @After
     fun tearDown() {
