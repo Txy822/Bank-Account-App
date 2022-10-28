@@ -12,6 +12,7 @@ class AccountTest {
         private lateinit var recentWithdrawal:Withdrawal
         private lateinit var date:String
         private var withdrawalAmount: Double =100.00
+        private var largeWithdrawalAmount: Double =10000000.00
         lateinit var withdrawalList:MutableList<Withdrawal>
 
 
@@ -34,12 +35,18 @@ class AccountTest {
 
     @Test
     fun `user withdraw money-success`(){
-       withdrawalAmount= account.withdrawAmount
-        var  date:String = account.date
-        balance=account.balance
         account.withdraw(recentWithdrawal)
         var newBalance=account.balance
         assert(newBalance!=balance-withdrawalAmount)
+    }
+    @Test
+    fun `withdraw large money more than balance-failure`(){
+       var newWithdrawal=Withdrawal(largeWithdrawalAmount, date)
+        balance=account.balance
+        account.withdraw(newWithdrawal)
+        var newBalance=account.balance
+
+        assert(newBalance== balance)
     }
 
     @Test
@@ -50,7 +57,6 @@ class AccountTest {
         withdrawalList.remove(recentWithdrawal)
         assert(withdrawalList.isEmpty())
     }
-
 
     @After
     fun tearDown() {

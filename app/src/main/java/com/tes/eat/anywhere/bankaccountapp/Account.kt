@@ -1,5 +1,7 @@
 package com.tes.eat.anywhere.bankaccountapp
 
+import android.widget.Toast
+
 class Account {
     val date: String=""
     val withdrawAmount: Double=0.0
@@ -9,13 +11,17 @@ class Account {
 
 
    fun deposit(depositAmount:Double){
-       balance=+ depositAmount
+       balance += depositAmount
    }
 
 
     fun withdraw(withdrawal:Withdrawal) {
-        balance=-withdrawal.amount
-        withdrawalList.add(withdrawal)
+        if(balance>=withdrawal.amount){
+            balance -=withdrawal.amount
+            withdrawalList.add(withdrawal)
+        }
+        else
+            balance -= 0.0
     }
 }
 
