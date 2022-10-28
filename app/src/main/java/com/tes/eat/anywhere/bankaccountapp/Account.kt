@@ -5,9 +5,17 @@ class Account {
     val withdrawAmount: Double=0.0
     var balance: Double= 0.0
 
+    var withdrawalList:MutableList<Withdrawal> = mutableListOf()
+
 
    fun deposit(depositAmount:Double){
        balance=+ depositAmount
    }
+
+
+    fun withdraw(withdrawal:Withdrawal) {
+        balance=-withdrawal.amount
+        withdrawalList.add(withdrawal)
+    }
 }
 
